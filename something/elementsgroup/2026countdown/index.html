@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>踢人倒计时</title>
+    <style>
+        body {
+            background-color: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Consolas', sans-serif;
+        }
+        .countdown-container {
+            text-align: center;
+            padding: 30px;
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #ff0000;
+        }
+        .countdown-title {
+            color: #fff;
+            margin-bottom: 25px;
+            font-size: 28px;
+            text-shadow: 0 0 5px #fff;
+        }
+        .countdown {
+            font-size: 64px;
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+        .units {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .unit {
+            color: #ff5555;
+            font-size: 18px;
+            text-shadow: 0 0 3px #ff5555;
+            width: 23%;
+            text-align: center;
+        }
+        .separator {
+            color: #ff0000;
+            font-size: 48px;
+            line-height: 64px;
+            vertical-align: middle;
+            letter-spacing: -50px
+        }
+        .unitt {
+            color: #ff5555;
+            font-size: 18px;
+            text-shadow: 0 0 3px #ff5555;
+            width: 23%;
+            text-align: center;
+            margin: 0 -30px
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown-container">
+        <div class="countdown-title">距离元素群踢人还有</div>
+        <div class="countdown">
+            <span id="days">000</span>
+            <span class="unit">天</span>
+            <span id="hours">00</span>
+            <span class="unit">时</span>
+            <span id="minutes">00</span>
+            <span class="unit">分</span>
+            <span id="seconds">00</span>
+            <span class="unitt">.</span>
+            <span id="milliseconds">000</span>
+            <span class="unit">秒</span>
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date('2026-05-14T00:00:00');
+            const now = new Date();
+            const diff = targetDate - now;
+            
+            // 计算时间单位
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            const milliseconds = diff % 1000;
+            
+            // 更新显示
+            document.getElementById('days').textContent = days.toString().padStart(3, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            document.getElementById('milliseconds').textContent = milliseconds.toString().padStart(3, '0');
+            
+            // 当时间到达时显示特殊效果
+            if (diff <= 0) {
+                document.getElementById('countdown').innerHTML = '<span style="color:#00ff00">000:00:00:00.000</span>';
+                clearInterval(timer);
+            }
+        }
+
+        // 立即更新并每毫秒刷新一次
+        updateCountdown();
+        const timer = setInterval(updateCountdown, 1);
+    </script>
+</body>
+</html>
