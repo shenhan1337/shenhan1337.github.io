@@ -7,8 +7,7 @@
     <style>
         @font-face {
             font-family: DigitalDisplay;
-            src: url(https://neal.fun/_nuxt/fonts/Digital-Display.cae7cd7.woff2)
-            <!--Sorry,there was a bug before I correct it-->
+            src: url('https://neal.fun/_nuxt/fonts/Digital-Display.cae7cd7.woff2');
         }
         body {
             background-color: #111;
@@ -17,7 +16,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: 'DigitalDisplay', sans-serif;
+            font-family: DigitalDisplay, sans-serif;
         }
         .countdown-container {
             text-align: center;
@@ -33,11 +32,13 @@
             text-shadow: 0 0 5px #fff;
         }
         .countdown {
-            font-size: 64px;
+			font-family: DigitalDisplay;
+            font-size: 100px;
             color: #ff0000;
             text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
             letter-spacing: 3px;
             margin-bottom: 10px;
+			font-variant-numeric: tabular-nums;
         }
         .units {
             display: flex;
@@ -61,12 +62,13 @@
             letter-spacing: -50px
         }
         .unitt {
+			font-family: consolas;
             color: #ff5555;
             font-size: 18px;
             text-shadow: 0 0 3px #ff5555;
             width: 23%;
             text-align: center;
-            margin: 0 -30px
+            margin: 0 -25px
         }
     </style>
 </head>
